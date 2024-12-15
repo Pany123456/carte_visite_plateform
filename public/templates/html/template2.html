@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #eaeaea;
+        }
+
+        .card {
+            display: flex;
+            width: 400px;
+            border: 2px solid var(--primary-color, #28a745);
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 100px;
+            background-color: var(--primary-color, #28a745);
+            color: var(--text-color, #ffffff);
+            text-align: center;
+            padding: 20px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+            color: var(--text-color, #000000);
+        }
+
+        .name {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .job_title {
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .company {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .details p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="sidebar">Nom</div>
+        <div class="content">
+            <div class="name">Nom</div>
+            <div class="job_title">Poste</div>
+            <div class="company">Entreprise</div>
+            <div class="details">
+                <p class="email">Email</p>
+                <p class="phone">Téléphone</p>
+                <p class="website">Site Web</p>
+                <p class="address">Adresse</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        .card {
+            width: 400px;
+            border: 2px solid var(--primary-color, #dc3545);
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: var(--primary-color, #dc3545);
+            color: var(--secondary-color, #ffffff);
+            text-align: center;
+            padding: 15px;
+        }
+
+        .header .name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .header .job_title {
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .content {
+            padding: 20px;
+            color: var(--text-color, #000000);
+        }
+
+        .details p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .footer {
+            background-color: var(--secondary-color, #f8f9fa);
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="name">Nom</div>
+            <div class="job_title">Poste</div>
+        </div>
+        <div class="content">
+            <div class="details">
+                <p class="company">Entreprise</p>
+                <p class="email">Email</p>
+                <p class="phone">Téléphone</p>
+                <p class="website">Site Web</p>
+                <p class="address">Adresse</p>
+            </div>
+        </div>
+        <div class="footer">
+            Contactez-moi pour plus d'informations.
+        </div>
+    </div>
+</body>
+</html>
