@@ -1,0 +1,82 @@
+html, body {
+    overflow-x: hidden;
+}
+
+.template-preview {
+    min-height: 200px;
+    background-color: #f8f9fa;
+}
+
+.fixed-top {
+    z-index: 1050;
+}
+
+.form-column {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.nav-tabs .nav-link.active {
+    background-color: #007bff; /* Couleur de fond pour l'onglet actif */
+    color: #fff; /* Couleur du texte de l'onglet actif */
+    font-weight: bold; /* Texte en gras */
+}
+
+.nav-tabs .nav-link {
+    color: #007bff; /* Couleur pour les onglets inactifs */
+    font-weight: normal;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #e9ecef; /* Couleur de survol pour les onglets */
+    color: #0056b3;
+}
+.stepper {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.step .circle {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 18px;
+    color: #007bff;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.step .circle.active {
+    background: #007bff;
+    color: #fff;
+}
+
+.step-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.step-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.template-preview {
+    min-height: 200px;
+    background-color: #f8f9fa;
+}
+
+.tab-pane.fade {
+    display: none;
+}
+
+.tab-pane.fade.show {
+    display: block;
+}
+

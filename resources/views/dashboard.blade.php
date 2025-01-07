@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('sidebar')
-<div class="card shadow">
+<div class="card shadow mb-4">
     <div class="card-header bg-primary text-white">
         <h5>Liste des utilisateurs</h5>
     </div>
@@ -19,12 +19,39 @@
 @endsection
 
 @section('content')
-<div class="card shadow">
-    <div class="card-header bg-success text-white">
-        <h5>Bienvenue sur le Dashboard</h5>
-    </div>
-    <div class="card-body">
-        <p>Ceci est votre tableau de bord. Ajoutez ici des graphiques, des statistiques, ou tout autre contenu pertinent.</p>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar verticale avec les boutons de navigation vers les CRUDs -->
+        <div class="col-md-3">
+            <div class="card shadow">
+                <div class="card-header bg-info text-dark">
+                    <h5>Navigation</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action btn-primary text-dark">
+                        Gérer les Utilisateurs
+                    </a>
+                    <a href="" class="list-group-item list-group-item-action btn-success text-dark">
+                        Gérer les Produits
+                    </a>
+                    <a href="" class="list-group-item list-group-item-action btn-warning text-dark">
+                        Gérer les Commandes
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu principal du Dashboard -->
+        <div class="col-md-9">
+            <div class="card shadow mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5>Bienvenue sur le Dashboard</h5>
+                </div>
+                <div class="card-body">
+                    <p>Ceci est votre tableau de bord. Ajoutez ici des graphiques, des statistiques, ou tout autre contenu pertinent.</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

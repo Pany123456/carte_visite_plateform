@@ -10,6 +10,12 @@
                 <h4>Se connecter</h4>
             </div>
             <div class="card-body">
+                <!-- Afficher les messages d'erreur -->
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <form action="{{ route('login') }}" method="POST">
                     @csrf
                     <div class="mb-3">

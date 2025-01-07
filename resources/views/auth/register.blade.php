@@ -10,6 +10,16 @@
                 <h4>Créer un compte</h4>
             </div>
             <div class="card-body">
+                <!-- Afficher les messages d'erreur -->
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('register') }}" method="POST">
                     @csrf
                     <div class="mb-3">
