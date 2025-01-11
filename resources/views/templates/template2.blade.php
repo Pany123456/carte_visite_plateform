@@ -115,67 +115,66 @@
     text-decoration: none;
 }
 </style>
+
 <div class="business-card">
     <!-- Image de fond -->
-    <div style="background-image: url('{{ asset('storage/' . $businessCard->background_image) }}'); background-size: cover; background-position: center; height: 44vh; position: relative; color: white;"></div>
+    <div id="background-image" 
+         style="background-image: url('{{ isset($businessCard->photo_url) ? asset('storage/' . $businessCard->photo_url) : '' }}'); 
+                background-size: cover; 
+                background-position: center; 
+                height: 44vh; 
+                position: relative; 
+                color: white;"
+         data-preview="background-image">
+    </div>
 
     <!-- Image de profil centrée -->
     <div class="profile">
-        <img src="{{ asset('storage/' . $businessCard->profile_image) }}" alt="Photo de {{ $businessCard->name }}">
-    </div><br>
+        <img id="profile-image" 
+             src="{{ isset($businessCard->photo_url) ? asset('storage/' . $businessCard->photo_url) : '' }}" 
+             alt="Photo de {{ $businessCard->name ?? 'utilisateur' }}"
+             data-preview="profile-image">
+    </div>
 
     <!-- Informations personnelles -->
     <div class="details">
-        <h2>{{ $businessCard->name }}</h2>
-        <p>{{ $businessCard->profession }}</p>
+        <h2 data-preview="name">{{ $businessCard->full_name ?? 'Nom utilisateur' }}</h2>
+        <p data-preview="job-title">{{ $businessCard->job_title ?? 'Titre professionnel' }}</p>
     </div>
 
     <!-- Coordonnées -->
     <div class="contact">
-        <a href="tel:{{ $businessCard->phone }}" aria-label="Téléphoner à {{ $businessCard->name }}">
-            <i class="fas fa-phone-alt"></i> {{ $businessCard->phone }}
+        <a href="#" aria-label="Téléphone" data-preview="phone">
+            <i class="fas fa-phone-alt"></i> {{ $businessCard->phone ?? 'Téléphone' }}
         </a>
-        <a href="https://wa.me/{{ $businessCard->whatsapp }}" aria-label="Contacter {{ $businessCard->name }} sur WhatsApp">
-            <i class="fab fa-whatsapp"></i> {{ $businessCard->whatsapp }}
+        <a href="#" aria-label="WhatsApp" data-preview="whatsapp">
+            <i class="fab fa-whatsapp"></i> {{ $businessCard->whatsapp_number ?? 'WhatsApp' }}
         </a>
     </div>
 
     <!-- Liens sociaux -->
     <div class="social-links">
-        @if(isset($businessCard->social_links['facebook']))
-            <a href="{{ $businessCard->social_links['facebook'] }}" aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-            </a>
-        @endif
-
-        @if(isset($businessCard->social_links['instagram']))
-            <a href="{{ $businessCard->social_links['instagram'] }}" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-        @endif
-
-        @if(isset($businessCard->social_links['twitter']))
-            <a href="{{ $businessCard->social_links['twitter'] }}" aria-label="Twitter">
-                <i class="fab fa-twitter"></i>
-            </a>
-        @endif
-
-        @if(isset($businessCard->social_links['tiktok']))
-            <a href="{{ $businessCard->social_links['tiktok'] }}" aria-label="TikTok">
-                <i class="fab fa-tiktok"></i>
-            </a>
-        @endif
-
-        @if(isset($businessCard->social_links['linkedin']))
-            <a href="{{ $businessCard->social_links['linkedin'] }}" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-            </a>
-        @endif
+        <a href="#" aria-label="Facebook" data-preview="facebook-link">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="#" aria-label="Instagram" data-preview="instagram-link">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" aria-label="Twitter" data-preview="twitter-link">
+            <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" aria-label="TikTok" data-preview="tiktok-link">
+            <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="#" aria-label="LinkedIn" data-preview="linkedin-link">
+            <i class="fab fa-linkedin"></i>
+        </a>
     </div>
-
 
     <!-- Pied de page -->
     <div class="footer">
-        @ {{ $businessCard->name }} | <a href="{{ $businessCard->website }}" aria-label="Visiter le site web de {{ $businessCard->name }}">{{ $businessCard->website }}</a>
+        <span data-preview="footer-name">@ {{ $businessCard->name ?? 'Nom utilisateur' }}</span>
+        <a href="#" aria-label="Site web" data-preview="website">{{ $businessCard->website ?? 'Site web' }}</a>
     </div>
 </div>
+

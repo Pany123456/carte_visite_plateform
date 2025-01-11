@@ -52,45 +52,25 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector(`[data-form-type="${type}"]`).classList.remove('btn-outline-primary');
     };
 
-    // Mise à jour de la prévisualisation en temps réel
-        window.updatePreview = function (field, value) {
-            const previewElement = document.querySelector(`#template-preview .${field}`);
-
-            if (field === 'colors') {
-                // Update colors in the preview
-                const previewCard = document.querySelector('#template-preview .card');
-                if (previewCard) {
-                    previewCard.style.setProperty('--primary-color', value.primary || '#000000');
-                    previewCard.style.setProperty('--secondary-color', value.secondary || '#ffffff');
-                    previewCard.style.setProperty('--text-color', value.text || '#000000');
-                }
-                return;
-            }
-
-            if (previewElement) {
-                previewElement.textContent = value || 'N/A'; // Default to "N/A" if empty
-                console.log(`Updated preview: ${field} = ${value}`);
-            } else {
-                console.warn(`Preview element for field "${field}" not found.`);
-            }
-        };
+  
 
 
 
 
+// Fonction pour charger et afficher le template
+window.loadTemplate = function (templatePath) {
+    const previewContainer = document.getElementById('template-preview');
 
-   // Fonction pour charger et afficher le template
-   window.loadTemplate = function(templatePath) {
-    // Votre code pour charger le template
+    // Vérifier si le chemin du template est fourni
     if (!templatePath) {
         console.error('Chemin du template non spécifié.');
-        const previewContainer = document.getElementById('template-preview');
         if (previewContainer) {
             previewContainer.innerHTML = `<p class="text-center text-danger m-0">Aucun template sélectionné.</p>`;
         }
         return;
     }
 
+    // Effectuer une requête pour récupérer le template
     fetch(`/preview-template/${encodeURIComponent(templatePath)}`)
         .then(response => {
             if (!response.ok) {
@@ -99,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.text();
         })
         .then(data => {
-            const previewContainer = document.getElementById('template-preview');
             if (previewContainer) {
                 previewContainer.innerHTML = data;
             } else {
@@ -108,12 +87,48 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Erreur lors du chargement du template :', error);
-            const previewContainer = document.getElementById('template-preview');
+
+            // Afficher un message d'erreur dans le conteneur de prévisualisation
             if (previewContainer) {
-                previewContainer.innerHTML = `<p class="text-center text-danger m-0">${error.message}</p>`;
+                previewContainer.innerHTML = `
+                    <p class="text-center text-danger m-0">
+                        Une erreur s'est produite lors du chargement : ${error.message}
+                    </p>`;
             }
         });
 };
+
+// Fonction pour mettre à jour les champs de prévisualisation
+window.updatePreview = function (fieldKey, value) {
+    const previewElement = document.querySelector(`#template-preview .${fieldKey}`);
+    if (previewElement) {
+        if (value instanceof File) {
+            // Si c'est un fichier, afficher une image
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewElement.innerHTML = `<img src="${e.target.result}" alt="${fieldKey}" style="max-width: 100%; height: auto;">`;
+            };
+            reader.readAsDataURL(value);
+        } else {
+            // Sinon, mettre à jour le texte
+            previewElement.textContent = value || '—';
+        }
+    } else {
+        console.warn(`Aucun élément trouvé pour le champ de prévisualisation : ${fieldKey}`);
+    }
+};
+
+// Gestion des couleurs pour la prévisualisation
+window.updateColorPreview = function (fieldKey, colorValue) {
+    const previewElement = document.querySelector(`[data-preview="${fieldKey}"]`);
+    if (previewElement) {
+        previewElement.style.backgroundColor = colorValue;
+    } else {
+        console.warn(`Aucun élément trouvé pour le champ de couleur : ${fieldKey}`);
+    }
+};
+
+
 
 
 

@@ -15,7 +15,16 @@ class BusinessCard extends Model
 
     protected $fillable = [
         'id', 'name', 'job_title', 'company', 'email', 'phone',
-        'website', 'address', 'template_id', 'colors', 'drive_link', 'user_id', 'is_active',
+        'website', 'address', 'template_id', 'colors', 'drive_link',
+        'user_id', 'is_active','social_links','logo','qr_code_url','photo_url',
+        'description','whatsapp_number','personal_message','date_of_birth',
+        'gender','company_size','registration_number','industry','tax_id',
+        'contact_person','position_contact_person','additional_services',
+    ];
+
+    protected $casts = [
+        'social_links' => 'array',
+        'additional_services' => 'array',
     ];
 
     protected static function boot()
