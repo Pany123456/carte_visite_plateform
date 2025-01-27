@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div class="card shadow-lg p-4" style="width: 100%; max-width: 2000px;">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 800px;">
 
         <!-- Stepper -->
         <div class="stepper d-flex justify-content-between mb-4">
@@ -49,7 +49,6 @@
                             </label>
                         </div>
                     @endforeach
-
                 </div>
                 <div class="text-center mt-4">
                     <button type="button" class="btn btn-primary" onclick="goToNextStep()">Suivant</button>
@@ -69,52 +68,43 @@
                 </div>
             </div>
 
-
             <!-- Étape 3: Remplissage et Prévisualisation -->
-            <div class="step-content" data-step="3">
-                <div class="row g-3">
-                    <!-- Section Formulaire -->
-                    <div class="col-md-6">
-                        <div class="tab-content p-3 border rounded" style="max-height: 400px; overflow-y: auto;">
-                            <div id="entreprise-form" class="tab-pane fade">
-                                @include('partials.form-fields', ['type' => 'entreprise'])
-                            </div>
-                            <div id="particulier-form" class="tab-pane fade">
-                                @include('partials.form-fields', ['type' => 'particulier'])
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Section Prévisualisation -->
-                    <div class="col-md-6">
-                        <h4 class="text-center">Prévisualisation</h4>
-                        <div id="template-preview"
-                            class="template-preview border rounded p-3 bg-light shadow"
-                            style="min-height: 400px; max-height: 450px; overflow-y: auto; overflow-x: auto;">
-                            <!-- État par défaut pour la prévisualisation -->
-                            <div style="max-width: 100%; overflow-x: auto;">
-                                <p class="text-center text-muted m-0">
-                                    Prévisualisation du template sélectionné...
-                                </p>
-                                <!-- Ajoutez ici le contenu réel de la prévisualisation -->
-                            </div>
-                        </div>
-                    </div>
+<div class="step-content" data-step="3">
+    <div class="row g-3">
+        <!-- Section Formulaire -->
+        <div class="col-md-5">
+            <div class="tab-content p-2 border rounded" style="max-height: 250px; overflow-y: auto; font-size: 0.8em;">
+                <div id="entreprise-form" class="tab-pane fade">
+                    @include('partials.form-fields', ['type' => 'entreprise'])
+                </div>
+                <div id="particulier-form" class="tab-pane fade">
+                    @include('partials.form-fields', ['type' => 'particulier'])
                 </div>
             </div>
+        </div>
+
+        <!-- Section Prévisualisation -->
+        <div class="col-md-4 offset-md-1" style="max-width: 350px; margin: 0 auto;">
+            <h4 class="text-center fs-6">Prévisualisation</h4>
+            <div id="template-preview"
+                 class="template-preview border rounded p-2 bg-light shadow d-flex align-items-center justify-content-center"
+                 style="min-height: 200px; font-size: 0.8em;">
+                <!-- État par défaut pour la prévisualisation -->
+                <p class="text-center text-muted m-0 fs-6">
+                    Prévisualisation du template sélectionné...
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-
-                <div class="text-center mt-4">
-                    <button type="button" class="btn btn-secondary" onclick="goToPreviousStep()">Précédent</button>
-                    <button type="submit" class="btn btn-success">Créer la Carte</button>
-                </div>
+            <!-- Boutons de navigation -->
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-secondary" onclick="goToPreviousStep()">Précédent</button>
+                <button type="submit" class="btn btn-success">Créer la Carte</button>
             </div>
         </form>
     </div>
 </div>
-
 @endsection
-
-
-

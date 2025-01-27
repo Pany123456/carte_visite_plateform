@@ -21,10 +21,32 @@ document.addEventListener('DOMContentLoaded', () => {
         currentStep = step;
     }
 
+    // Valider les champs d'une étape
+    function validateStep(step) {
+        const stepContent = document.querySelector(`.step-content[data-step="${step}"]`);
+        if (!stepContent) return true;
+
+        const requiredFields = stepContent.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('is-invalid'); // Ajouter une classe pour signaler l'erreur
+            } else {
+                field.classList.remove('is-invalid'); // Retirer l'erreur si corrigée
+            }
+        });
+
+        return isValid;
+    }
+
     // Aller à l'étape suivante
     window.goToNextStep = function () {
-        if (currentStep < 3) {
+        if (currentStep < 3 && validateStep(currentStep)) {
             showStep(currentStep + 1);
+        } else {
+            alert('Veuillez remplir tous les champs obligatoires avant de continuer.');
         }
     };
 
@@ -52,87 +74,85 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector(`[data-form-type="${type}"]`).classList.remove('btn-outline-primary');
     };
 
-  
+    // Fonction pour charger et afficher le template
+    window.loadTemplate = function (templatePath) {
+        const previewContainer = document.getElementById('template-preview');
 
-
-
-
-// Fonction pour charger et afficher le template
-window.loadTemplate = function (templatePath) {
-    const previewContainer = document.getElementById('template-preview');
-
-    // Vérifier si le chemin du template est fourni
-    if (!templatePath) {
-        console.error('Chemin du template non spécifié.');
-        if (previewContainer) {
-            previewContainer.innerHTML = `<p class="text-center text-danger m-0">Aucun template sélectionné.</p>`;
-        }
-        return;
-    }
-
-    // Effectuer une requête pour récupérer le template
-    fetch(`/preview-template/${encodeURIComponent(templatePath)}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Template introuvable (status: ${response.status})`);
-            }
-            return response.text();
-        })
-        .then(data => {
+        if (!templatePath) {
+            console.error('Chemin du template non spécifié.');
             if (previewContainer) {
-                previewContainer.innerHTML = data;
+                previewContainer.innerHTML = `<p class="text-center text-danger m-0">Aucun template sélectionné.</p>`;
+            }
+            return;
+        }
+
+        fetch(`/preview-template/${encodeURIComponent(templatePath)}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Template introuvable (status: ${response.status})`);
+                }
+                return response.text();
+            })
+            .then(data => {
+                if (previewContainer) {
+                    previewContainer.innerHTML = data;
+                } else {
+                    console.error('Conteneur de prévisualisation introuvable.');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors du chargement du template :', error);
+                if (previewContainer) {
+                    previewContainer.innerHTML = `
+                        <p class="text-center text-danger m-0">
+                            Une erreur s'est produite lors du chargement : ${error.message}
+                        </p>`;
+                }
+            });
+    };
+
+    // Variable globale pour stocker les couleurs
+    let colors = {
+        primary: '#000000',
+        secondary: '#ffffff',
+        text: '#000000',
+    };
+
+    // Mettre à jour les champs de prévisualisation
+    window.updatePreview = function (fieldKey, value) {
+        const previewElement = document.querySelector(`[data-preview="${fieldKey}"]`);
+        if (previewElement) {
+            if (value instanceof File) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    if (previewElement.tagName === 'IMG') {
+                        previewElement.src = e.target.result;
+                    } else {
+                        previewElement.innerHTML = `<img src="${e.target.result}" alt="${fieldKey}" style="max-width: 100%; height: auto;">`;
+                    }
+                };
+                reader.readAsDataURL(value);
+            } else if (fieldKey.includes('color')) {
+                if (fieldKey.includes('text')) {
+                    previewElement.style.color = value;
+                } else {
+                    previewElement.style.backgroundColor = value;
+                }
             } else {
-                console.error('Conteneur de prévisualisation introuvable.');
+                previewElement.textContent = value || '—';
             }
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement du template :', error);
-
-            // Afficher un message d'erreur dans le conteneur de prévisualisation
-            if (previewContainer) {
-                previewContainer.innerHTML = `
-                    <p class="text-center text-danger m-0">
-                        Une erreur s'est produite lors du chargement : ${error.message}
-                    </p>`;
-            }
-        });
-};
-
-// Fonction pour mettre à jour les champs de prévisualisation
-window.updatePreview = function (fieldKey, value) {
-    const previewElement = document.querySelector(`#template-preview .${fieldKey}`);
-    if (previewElement) {
-        if (value instanceof File) {
-            // Si c'est un fichier, afficher une image
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                previewElement.innerHTML = `<img src="${e.target.result}" alt="${fieldKey}" style="max-width: 100%; height: auto;">`;
-            };
-            reader.readAsDataURL(value);
-        } else {
-            // Sinon, mettre à jour le texte
-            previewElement.textContent = value || '—';
         }
-    } else {
-        console.warn(`Aucun élément trouvé pour le champ de prévisualisation : ${fieldKey}`);
-    }
-};
 
-// Gestion des couleurs pour la prévisualisation
-window.updateColorPreview = function (fieldKey, colorValue) {
-    const previewElement = document.querySelector(`[data-preview="${fieldKey}"]`);
-    if (previewElement) {
-        previewElement.style.backgroundColor = colorValue;
-    } else {
-        console.warn(`Aucun élément trouvé pour le champ de couleur : ${fieldKey}`);
-    }
-};
-
-
-
-
-
-
+        if (fieldKey === 'colors') {
+            colors = { ...colors, ...value };
+            const previewCard = document.querySelector('.business-card');
+            if (previewCard) {
+                previewCard.style.setProperty('--primary-color', colors.primary || '#000000');
+                previewCard.style.setProperty('--secondary-color', colors.secondary || '#ffffff');
+                previewCard.style.setProperty('--text-color', colors.text || '#000000');
+            }
+        }
+    };
 
     showStep(1); // Initialisation : afficher la première étape
 });
