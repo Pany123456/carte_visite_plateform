@@ -79,6 +79,12 @@
     </div>
 
     <div class="mb-3">
+        <label for="particulier_email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="particulier_email" name="email"
+               oninput="updatePreview('email', this.value)" required>
+    </div>
+
+    <div class="mb-3">
     <label for="particulier_phone" class="form-label">Numéro de Téléphone</label>
     <input type="tel" class="form-control" id="particulier_phone" name="phone"
            oninput="updatePreview('phone', this.value)" required>
@@ -151,8 +157,8 @@
 </div>
 
 <div class="mb-3">
-    <label for="photo_file" class="form-label">Photo/Logo</label>
-    <input type="file" class="form-control" id="photo_file" name="photo_file" accept="image/*"
+    <label for="photo_url" class="form-label">Photo/Logo</label>
+    <input type="file" class="form-control" id="photo_file" name="photo_url" accept="image/*"
            onchange="updatePreview('profile-image', this.files[0])">
 </div>
 
@@ -190,3 +196,13 @@
     <label for="colors_text" class="form-label">Couleur du Texte</label>
     <input type="color" class="form-control form-control-color" id="colors_text" name="colors[text]" onchange="updatePreview('colors', { text: this.value })" value="#000000">
 </div>
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+           @foreach ($errors->all() as $error)
+               <li>{{ $error }}</li>
+           @endforeach
+        </ul>
+    </div>
+@endif
