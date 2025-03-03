@@ -39,6 +39,13 @@ color: var(--text-color);
 .business-card .social-links a {
 color: var(--text-color);
 }
+.business-card .contact a{
+    color: var(--text-color);
+}
+
+.business-card .footer span{
+    color: var(--text-color);
+}
 
 .header {
     background-size: cover;

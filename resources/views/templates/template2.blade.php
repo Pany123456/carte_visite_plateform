@@ -18,7 +18,7 @@
  <!-- Image de fond -->
  <div id="background-image"
  style="
-     background-image: url('{{ isset($businessCard->photo_url) ? asset($businessCard->photo_url) : asset('images/default-bg.jpg') }}');
+     background-image: url('{{ isset($businessCard->background_image) ? asset($businessCard->background_image) : asset('images/default-bg.jpg') }}');
      height: 44vh;
      background-size: cover; /* Ajuste automatiquement l'image */
      background-position: center;
@@ -55,24 +55,29 @@
         </a>
     </div>
 
-    <!-- Liens sociaux -->
-    <div class="social-links">
-        <a href="{{ $businessCard->facebook_link ?? '#' }}" aria-label="Facebook" data-preview="facebook-link">
-            <i class="bi bi-facebook secondary"></i>
-        </a>
-        <a href="{{ $businessCard->instagram_link ?? '#' }}" aria-label="Instagram" data-preview="instagram-link">
-            <i class="bi bi-instagram secondary"></i>
-        </a>
-        <a href="{{ $businessCard->twitter_link ?? '#' }}" aria-label="Twitter" data-preview="twitter-link">
-            <i class="bi bi-twitter secondary"></i>
-        </a>
-        <a href="{{ $businessCard->tiktok_link ?? '#' }}" aria-label="TikTok" data-preview="tiktok-link">
-            <i class="bi bi-tiktok secondary"></i>
-        </a>
-        <a href="{{ $businessCard->linkedin_link ?? '#' }}" aria-label="LinkedIn" data-preview="linkedin-link">
-            <i class="bi bi-linkedin secondary"></i>
-        </a>
-    </div>
+   <!-- Liens sociaux -->
+<div class="social-links">
+    <a href="https://www.facebook.com/{{ $businessCard->facebook_link ?? '' }}" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-facebook secondary"></i>
+    </a>
+
+    <a href="https://www.instagram.com/{{ $businessCard->instagram_link ?? '' }}" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-instagram secondary"></i>
+    </a>
+
+    <a href="https://twitter.com/{{ $businessCard->twitter_link ?? '' }}" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-twitter secondary"></i>
+    </a>
+
+    <a href="https://www.tiktok.com/@{{ $businessCard->tiktok_link ?? '' }}" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-tiktok secondary"></i>
+    </a>
+
+    <a href="https://www.linkedin.com/in/{{ $businessCard->linkedin_link ?? '' }}" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-linkedin secondary"></i>
+    </a>
+</div>
+
 
     <!-- Pied de page -->
     <div class="footer">

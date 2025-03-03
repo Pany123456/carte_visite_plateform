@@ -21,7 +21,7 @@
         </div>
 
         <!-- Formulaire principal -->
-        <form id="business-card-form" method="POST" action="{{ route('business-cards.store') }}" novalidate>
+        <form id="business-card-form" method="POST" action="{{ route('business-cards.store') }}" enctype="multipart/form-data" novalidate>
             @csrf
 
             <!-- Étape 1: Choix du Template -->

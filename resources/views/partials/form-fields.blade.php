@@ -144,6 +144,10 @@
         <label for="linkedin" class="form-label">LinkedIn</label>
         <input type="url" class="form-control" id="linkedin" name="social_links[linkedin]" placeholder="Lien LinkedIn" oninput="updatePreview('social_links_linkedin', this.value)">
     </div>
+    <div class="mb-2">
+        <label for="snapchat" class="form-label">Snapchat</label>
+        <input type="url" class="form-control" id="snapchat" name="social_links[snapchat]" placeholder="Lien Snapchat" oninput="updatePreview('social_links_snapchat', this.value)">
+    </div>
     <button type="button" class="btn btn-secondary mt-2" onclick="addSocialField()">Ajouter un autre réseau</button>
     <div id="social_links_fields"></div>
 </div>
@@ -157,9 +161,15 @@
 </div>
 
 <div class="mb-3">
-    <label for="photo_url" class="form-label">Photo/Logo</label>
+    <label for="photo_url" class="form-label">Photo de profile</label>
     <input type="file" class="form-control" id="photo_file" name="photo_url" accept="image/*"
            onchange="updatePreview('profile-image', this.files[0])">
+</div>
+
+<div class="mb-3">
+    <label for="logo" class="form-label">Logo</label>
+    <input type="file" class="form-control" id="logo" name="logo" accept="image/*"
+           onchange="updatePreview('logo', this.files[0])">
 </div>
 
 <div class="mb-3">

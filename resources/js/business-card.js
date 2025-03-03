@@ -65,6 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('entreprise-form').classList.toggle('show', type === 'entreprise');
         document.getElementById('particulier-form').classList.toggle('show', type === 'particulier');
 
+        document.querySelectorAll('#entreprise-form input, #entreprise-form textarea, #entreprise-form select')
+            .forEach(field => field.disabled = (type !== 'entreprise'));
+
+        document.querySelectorAll('#particulier-form input, #particulier-form textarea, #particulier-form select')
+            .forEach(field => field.disabled = (type !== 'particulier'));
+
         // Ajouter une classe active au bouton sélectionné
         document.querySelectorAll('[data-form-type]').forEach(button => {
             button.classList.remove('btn-primary');
