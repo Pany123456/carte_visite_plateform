@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TemplateController;
 
+
 /*
 |----------------------------------------------------------------------
 | Web Routes
@@ -61,3 +62,7 @@ Route::middleware('auth')->group(function () {
     ->where('path', '.*')
     ->name('template.preview');
 });
+
+ //CRUD Template
+
+    Route::resource('templateCrud', TemplateController::class);

@@ -9,7 +9,12 @@
 </head>
 
 <body>
-    <div class="business-card">
+    <!-- Template de prévisualisation -->
+
+    <div class="business-card" style="
+    --primary-color: {{ $colors['primary'] ?? '#000000' }};
+    --secondary-color: {{ $colors['secondary'] ?? '#ffffff' }};
+    --text-color: {{ $colors['text'] ?? '#000000' }};">
         <!-- Élément pour la prévisualisation des couleurs -->
  <div id="color-preview" style="width: 20px; height: 20px; display: none;" data-preview="colors"></div>
 
@@ -97,9 +102,9 @@ END:VCARD" download="{{ $businessCard->full_name ?? 'contact' }}.vcf">
             <!-- Pied de page -->
             <div class="footer">
                 <a href="#" data-preview="full_name">{{ '@' . ($businessCard->full_name ?? 'Nom utilisateur') }}</a>
-                @if(isset($businessCard->website))
-                    <a href="{{ $businessCard->website }}" data-preview="website">{{ $businessCard->website }}</a>
-                @endif
+                <a href="{{ $businessCard->website ?? '#' }}" data-preview="website">
+                    {{ $businessCard->website ?? 'Aucun site web' }}
+                </a>
             </div>
         </div>
     </body>

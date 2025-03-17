@@ -126,8 +126,10 @@
     <label for="facebook" class="form-label">Liens Réseaux Sociaux</label>
     <div class="mb-2">
         <label for="facebook" class="form-label">Facebook</label>
-        <input type="url" class="form-control" id="facebook" name="social_links[facebook]" placeholder="Lien Facebook" oninput="updatePreview('social_links_facebook', this.value)">
+        <input type="url" class="form-control" id="facebook" name="social_links[facebook]" placeholder="Lien Facebook"
+            oninput="updatePreview('facebook', this.value)">
     </div>
+
     <div class="mb-2">
         <label for="instagram" class="form-label">Instagram</label>
         <input type="url" class="form-control" id="instagram" name="social_links[instagram]" placeholder="Lien Instagram" oninput="updatePreview('social_links_instagram', this.value)">

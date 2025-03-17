@@ -131,7 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (value instanceof File) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
-                    if (previewElement.tagName === 'IMG') {
+                    if(fieldKey==='background-image'){
+                        previewElement.style.backgroundImage = `url('${e.target.result }')`;
+                    }
+                    else if (previewElement.tagName === 'IMG') {
                         previewElement.src = e.target.result;
                     } else {
                         previewElement.innerHTML = `<img src="${e.target.result}" alt="${fieldKey}" style="max-width: 100%; height: auto;">`;
