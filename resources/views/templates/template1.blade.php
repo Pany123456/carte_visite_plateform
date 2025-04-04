@@ -66,7 +66,7 @@ END:VCARD" download="{{ $businessCard->full_name ?? 'contact' }}.vcf">
         <i class="fab fa-whatsapp"></i>
     </a>
     <a href="tel:{{ $businessCard->phone ?? '' }}" aria-label="Téléphone" >
-        <i class="fas fa-phone-alt"></i>
+        <i class="bi bi-telephone"></i>
     </a>
 </div>
 

@@ -31,8 +31,8 @@
                     <a href="{{ route('users.index') }}" class="list-group-item list-group-item-action btn-primary text-dark">
                         Gérer les Utilisateurs
                     </a>
-                    <a href="" class="list-group-item list-group-item-action btn-success text-dark">
-                        Gérer les Produits
+                    <a href="{{ route('templateCrud.index') }}" class="list-group-item list-group-item-action btn-success text-dark">
+                        Ajouter les templates
                     </a>
                     <a href="" class="list-group-item list-group-item-action btn-warning text-dark">
                         Gérer les Commandes
@@ -48,7 +48,12 @@
                     <h5>Bienvenue sur le Dashboard</h5>
                 </div>
                 <div class="card-body">
-                    <p>Ceci est votre tableau de bord. Ajoutez ici des graphiques, des statistiques, ou tout autre contenu pertinent.</p>
+                    <p> Vous pouvez debutez la personnalisation de vos templates </p>
+
+                    <form action="{{ route('business-cards.create') }}" method="get">
+                        <button type="submit" class="btn btn-primary">Créer une carte de visite</button>
+                    </form>
+
                 </div>
             </div>
         </div>

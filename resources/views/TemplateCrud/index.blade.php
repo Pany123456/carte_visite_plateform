@@ -44,5 +44,9 @@
             Aucun template trouvé. Ajoutez-en un dès maintenant ! 🚀
         </div>
     @endif
+
+    <form action="{{ route('dashboard') }}" method="get">
+        <button type="submit" class="btn btn-secondary">⬅ Retour au Dashboard</button>
+    </form>
 </div>
 @endsection

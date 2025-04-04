@@ -20,13 +20,14 @@
  <div id="color-preview" style="width: 20px; height: 20px; display: none;" data-preview="colors"></div>
 
 
-        <div class="v158_4"></div>
-        <div class="v158_5"></div>
-        <div class="v158_6" data-preview="background-image">
-            <img src="{{ isset($businessCard->background_image) ? asset($businessCard->background_image) : asset('images/default-bg.jpg') }}"
-                 alt="Image de fond"
-                 class="background-image">
-        </div>
+ <div class="v158_4"></div>
+ <div class="v158_5"></div>
+ <div class="v158_6"
+     data-preview="background-image"
+     style="background-image: url('{{ isset($businessCard->background_image) ? asset($businessCard->background_image) : asset('images/default-bg.jpg') }}');
+            background-size: cover;
+            background-position: center;">
+</div>
         <span class="v158_24" data-preview="full_name">{{ $businessCard->full_name ?? 'Nom' }}</span>
         <span class="v158_26" data-preview="job_title">{{ $businessCard->job_title ?? 'Profession' }}</span>
         <div class="v158_9" >

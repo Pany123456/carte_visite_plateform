@@ -77,11 +77,17 @@
                     <div class="col-md-6">
                         <div class="tab-content p-3 border rounded" style="max-height: 400px; overflow-y: auto;">
                             <div id="entreprise-form" class="tab-pane fade">
-                                @include('partials.form-fields', ['type' => 'entreprise'])
+                                {{-- Champs spécifiques à l'entreprise --}}
+                                @include('partials.form-fields-entreprise')
+
                             </div>
+
                             <div id="particulier-form" class="tab-pane fade">
-                                @include('partials.form-fields', ['type' => 'particulier'])
+                                {{-- Champs spécifiques au particulier --}}
+                                @include('partials.form-fields-particulier')
+
                             </div>
+                            <div> @include('partials.form-fields-communs')</div>
                         </div>
                     </div>
 
@@ -105,10 +111,11 @@
 
 
 
-                <div class="text-center mt-4">
-                    <button type="button" class="btn btn-secondary" onclick="goToPreviousStep()">Précédent</button>
-                    <button type="submit" class="btn btn-success">Créer la Carte</button>
-                </div>
+            <div class="text-center mt-4">
+                <a href="{{ route('dashboard') }}" class="btn btn-secondary">Revenir au Dashboard</a>
+                <button type="submit" class="btn btn-success">Créer la Carte</button>
+            </div>
+
             </div>
         </form>
     </div>

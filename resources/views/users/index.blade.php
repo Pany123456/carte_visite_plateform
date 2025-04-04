@@ -41,6 +41,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <form action="{{ route('dashboard') }}" method="get">
+                <button type="submit" class="btn btn-secondary">⬅ Retour au Dashboard</button>
+            </form>
         </div>
     </div>
 @endsection
