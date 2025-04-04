@@ -8,6 +8,8 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+                'resources/js/business-card.js',
+                'resources/css/business-card.css',
             ],
             refresh: true,
         }),
