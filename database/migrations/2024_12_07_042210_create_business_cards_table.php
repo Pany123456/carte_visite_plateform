@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('business_cards', function (Blueprint $table) {
             $table->uuid('id')->primary(); // UUID unique pour chaque design
-            $table->string('name'); // Nom du client ou du design
+            $table->string('full_name'); // Nom du client ou du design
             $table->string('job_title')->nullable(); // Poste
             $table->string('company')->nullable(); // Entreprise
             $table->string('email'); // Email

@@ -68,7 +68,7 @@ class BusinessCardController extends Controller
 
         // Suppression des champs spécifiques aux particuliers
         unset($data['full_name'], $data['background_image'], $data['personal_message'], $data['date_of_birth'], $data['gender'], $data['user_id'], $data['template_id']);
-        
+
     } elseif ($request->form_type === 'particulier') {
         $data = $request->validate([
             'full_name' => 'required|string|max:255',
@@ -93,12 +93,11 @@ class BusinessCardController extends Controller
 
         // Sérialisation des champs JSON
         $data['colors'] = json_encode($data['colors'] ?? []);
-        $data['name'] = $data['full_name'];
         $data['social_links'] = json_encode($data['social_links'] ?? []);
 
         // Suppression des champs spécifiques aux entreprises
         unset($data['company_name'], $data['address'], $data['website'], $data['company_size'], $data['registration_number'], $data['industry'], $data['tax_id'], $data['contact_person'], $data['position_contact_person'], $data['additional_services']);
-        
+
         Log::info('Request Data', $request->all());
         Log::info('Data sent to db', $data);
     } else {
@@ -193,7 +192,7 @@ private function handleFileUpload(Request $request, array $data): array
             ? $businessCard->colors
             : json_decode($businessCard->colors, true);
 
-       
+
         return view('business_cards.show', [
             'businessCard' => $businessCard,
             'templateName' => $templateName,

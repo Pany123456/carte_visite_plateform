@@ -9,7 +9,7 @@ class Template extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'thumbnail'];
+    protected $fillable = ['name', 'thumbnail','file_path'];
 
     public function businessCards()
     {

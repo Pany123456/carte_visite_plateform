@@ -57,12 +57,15 @@ Route::middleware('auth')->group(function () {
     //CRUD Utilisateurs
     Route::resource('users', UserController::class);
 
-    Route::get('/templates/{templateName}', [TemplateController::class, 'show']);
     Route::get('/preview-template/{path}', [TemplateController::class, 'preview'])
     ->where('path', '.*')
     ->name('template.preview');
+
+     //CRUD Template
+
+     Route::resource('templateCrud', TemplateController::class);
+
 });
 
- //CRUD Template
+    Route::get('/templates/{templateName}', [TemplateController::class, 'show']);
 
-    Route::resource('templateCrud', TemplateController::class);

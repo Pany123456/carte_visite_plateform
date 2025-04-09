@@ -24,6 +24,8 @@
      background-position: center;
      background-repeat: no-repeat;
      background-attachment: fixed;
+     position: relative;
+     z-index: 1;
  "
  data-preview="background-image">
  </div>
@@ -82,7 +84,7 @@
     <!-- Pied de page -->
     <div class="footer">
         <span class="text" data-preview="full_name">@ {{ $businessCard->full_name ?? 'Nom utilisateur' }}</span>
-        <a href="{{ $businessCard->website ?? '#' }}" aria-label="Site web">
+        <a href="{{ $businessCard->website ?? '#' }}" >
             <span class="text" data-preview="website">{{ $businessCard->website ?? 'Site web' }}</span>
         </a>
     </div>
