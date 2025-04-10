@@ -59,13 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/preview-template/{path}', [TemplateController::class, 'preview'])
     ->where('path', '.*')
     ->name('template.preview');
-    Route::get('/business-cards/{id}', [BusinessCardController::class, 'show'])->name('business-cards.show');
+    Route::get('/templates/{templateName}', [TemplateController::class, 'show']);    
 
      //CRUD Template
 
      Route::resource('templateCrud', TemplateController::class);
 
 });
+Route::get('/business-cards/{id}', [BusinessCardController::class, 'show'])->name('business-cards.show');
 
-Route::get('/templates/{templateName}', [TemplateController::class, 'show']);    
 
