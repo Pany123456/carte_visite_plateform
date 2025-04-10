@@ -60,12 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/preview-template/{path}', [TemplateController::class, 'preview'])
     ->where('path', '.*')
     ->name('template.preview');
-    Route::get('/templates/{templateName}', [TemplateController::class, 'show']);
+    
      //CRUD Template
 
      Route::resource('templateCrud', TemplateController::class);
 
 });
 
-    
+Route::get('/templates/{templateName}', [TemplateController::class, 'show']);    
 
