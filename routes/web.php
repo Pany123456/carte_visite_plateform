@@ -36,7 +36,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/', function () {
     return redirect()->route('login');
 });
-
+Route::get('/business-cards/{id}', [BusinessCardController::class, 'show'])->name('business-cards.show');
 // Routes protégées par l'authentification
 Route::middleware('auth')->group(function () {
 
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     // Autres routes pour le CRUD des cartes de visite
     Route::get('/business-cards/create', [BusinessCardController::class, 'create'])->name('business-cards.create');
     Route::post('/business-cards', [BusinessCardController::class, 'store'])->name('business-cards.store');
-    Route::get('/business-cards/{id}', [BusinessCardController::class, 'show'])->name('business-cards.show');
+    
 
     //CRUD Utilisateurs
     Route::resource('users', UserController::class);
@@ -60,12 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/preview-template/{path}', [TemplateController::class, 'preview'])
     ->where('path', '.*')
     ->name('template.preview');
-
+    Route::get('/templates/{templateName}', [TemplateController::class, 'show']);
      //CRUD Template
 
      Route::resource('templateCrud', TemplateController::class);
 
 });
 
-    Route::get('/templates/{templateName}', [TemplateController::class, 'show']);
+    
 
